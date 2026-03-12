@@ -12,7 +12,7 @@ export default function Login() {
   const submit = async e => {
     e.preventDefault(); setErr(''); setBusy(true);
     try { await login(form.email, form.password); nav('/'); }
-    catch(ex){ setErr(ex.response?.data?.error || 'Login failed'); }
+    catch(ex){ setErr(ex.response?.data?.error || 'Login failed (v2)'); }
     finally{ setBusy(false); }
   };
 
