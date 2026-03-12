@@ -1,0 +1,23 @@
+import urllib.request
+import json
+
+url = "https://tradejournal-6sdc.onrender.com/api/auth/login"
+payload = {"email": "p@gmail.com", "password": "wrong"}
+data = json.dumps(payload).encode('utf-8')
+
+print(f"Testing POST {url}")
+req = urllib.request.Request(url, data=data, method='POST')
+req.add_header('Content-Type', 'application/json')
+req.add_header('Origin', 'https://journalforx.netlify.app')
+
+try:
+    with urllib.request.urlopen(req) as response:
+        print(f"Status: {response.getcode()}")
+        print(f"Headers: {response.info()}")
+        print(f"Body: {response.read().decode('utf-8')}")
+except urllib.error.HTTPError as e:
+    print(f"Status: {e.code}")
+    print(f"Headers: {e.info()}")
+    print(f"Body: {e.read().decode('utf-8')}")
+except Exception as e:
+    print(f"Error: {e}")
